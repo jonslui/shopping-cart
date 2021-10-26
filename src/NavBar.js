@@ -4,7 +4,8 @@ import './App.css';
 
 const NavBar = () => {
   const navStyle = {
-    color: 'white'
+    color: 'white',
+    textDecoration: 'none'
   }
 
   return (

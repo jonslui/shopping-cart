@@ -19,9 +19,19 @@ const ItemPage = ({ match }) => {
   return (
     <div>
       <NavBar />
-      <h1>{item.title}</h1>
-      <img src = {item.image} alt = {item.id} className = 'product-image'/>
-      <p>{item.description}</p>
+      <div className = 'item-container'>
+        <img src = {item.image} alt = {item.id} className = 'item-image'/>
+        <div className = 'item-info'>
+        <h1 className = 'item-title'>{item.title}</h1>              
+          {/* <div className = 'rating-info'>
+            <div>Stars: {item.rating.rate}</div>
+            <div>Raters: {item.rating.count}</div>
+          </div>   */}
+          <p>{item.description}</p>
+          <div>${item.price}</div>
+          <button type = 'submit'>Add to Cart</button>
+        </div>
+      </div>
     </div>
   )
 }
