@@ -1,14 +1,13 @@
 import React from 'react';
 import NavBar from './NavBar';
-import './App.css'
 
-function App() {
+const AboutUs = () => {
   return (
     <div className = 'Title'>
       <NavBar />
-      <h1>Home</h1>
+      <h1>About Us</h1>
     </div>
-  );
+  )
 }
 
-export default App;
+export default AboutUs;
