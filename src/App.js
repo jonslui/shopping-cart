@@ -1,13 +1,39 @@
-import React from 'react';
-import NavBar from './NavBar';
+import React, {useState} from 'react';
+import Routes from './Routes';
 import './App.css'
 
-function App() {
+function App() {  
+  const [cartItems, setCartItems] = useState({});
+
+  function addCartItem(id){
+    if ( cartItems[id] ){
+      setCartItems({
+        ...cartItems,
+        [id]: cartItems[id] + 1
+      });
+    } else {
+      setCartItems({
+        ...cartItems,
+        [id]: 1
+      })
+    }
+  }
+
+  function removeCartItem(id){
+    if ( !cartItems[id] || cartItems[id] === 1 ){
+      let prevState = {...cartItems};
+      delete prevState[id];
+      setCartItems({...prevState});
+    } else {
+      setCartItems({
+        ...cartItems,
+        [id]: cartItems[id] - 1
+      })
+    }
+  }
+
   return (
-    <div className = 'Title'>
-      <NavBar />
-      <h1>Home</h1>
-    </div>
+    <Routes addCartItem = {addCartItem} removeCartItem = {removeCartItem} cartContents = {cartItems}/>
   );
 }
 

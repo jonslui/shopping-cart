@@ -18,17 +18,17 @@ const Shop = () => {
   const fetchItems = async () => {
     const data = await fetch(`https://fakestoreapi.com/products/`)
     const items = await data.json()
-    console.log(items);
     setItems(items)
+    document.getElementById('loader').style.display = 'none';
   }
 
   return (
     <div className = 'Title'>
       <NavBar />
       <h1>Shop</h1>
+      <div id='loader'/>
       <div className = 'items'>
-        {items.map((item) => {
-            return (
+        {items.map((item) => { return (
             <div className = 'item' key = {item.id}>
               <Link to = {`/shop/${item.id}`} style = {shopStyle}>
                 <div className = 'items-image-container'>
