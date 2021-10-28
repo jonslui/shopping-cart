@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import NavBar from './NavBar';
-import './App.css';
+import './ShoppingCart.css';
 
 const ShoppingCart = (props) => {
   const [items, setItems] = useState([]);
@@ -23,25 +23,47 @@ const ShoppingCart = (props) => {
     document.getElementById('loader').style.display = 'none';
   }
 
+  const subtotal = (price, quantity) => {
+    return Number.parseFloat(price * quantity).toFixed(2);
+  }
+
   return (
     <div>
       <NavBar />
       <h1 className = 'Title'>My Cart</h1>
       <div id = 'loader' />
-      <div>
+      <div className = 'shopping-cart-container'>
         {
           Object.keys(props.cartContents).map((id) => {
             if (items[id]){
               return ( 
-                <div key = {id}>
-                  <div>{items[id].title} : {props.cartContents[id]}</div>
-                  <button type = 'submit' onClick = {() => props.addCartItem(id)}>+</button>
-                  <button type = 'submit' onClick = {() => props.removeCartItem(id)}>-</button>
+                <div key = {id} className = 'shopping-cart-item'>
+                  
+                  <div className = 'shopping-cart-image-container'>
+                    <img src = {items[id].image} alt = {id} className = 'shopping-cart-image'/> 
+                  </div>
+                  
+                  <div className = 'text-container'>
+                    <div className = 'shopping-cart-item-title'>{items[id].title}</div>
+
+
+                    <div className = 'price'>${items[id].price}</div>
+                    <div className = 'multiply-sign'>x</div>
+                    <div className = 'quantity-container'>
+                      <div className = 'quantity'>{props.cartContents[id]}</div>
+                      <button type = 'submit' onClick = {() => props.addCartItem(id)} className = 'add'>+</button>
+                      <button type = 'submit' onClick = {() => props.removeCartItem(id)} className = 'subtract'>-</button>
+                    </div>
+                  
+                    <div className = 'subtotal'>Subtotal: ${subtotal(items[id].price, props.cartContents[id])}</div>
+                  </div>
+
                 </div>
               )
             }
           })
         }
+      <div>Total:</div> 
       </div>
     </div>
   )

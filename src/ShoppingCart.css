@@ -1,0 +1,80 @@
+/* Page Headers */
+.Title {
+  text-align: center;
+}
+
+.shopping-cart-container {
+  display: grid;
+  row-gap: 3vh;
+  width: 60vw;
+  min-width: 450px;
+  margin: auto;
+}
+.shopping-cart-item {
+  border-top: 1px solid;
+
+}
+.shopping-cart-image-container {
+  width: 10vw;
+}
+
+.text-container {
+  grid-area: info;
+  flex-grow: 1;
+  display: grid;
+  grid-template-areas: 
+  "title title title subtotal"
+  "price sign quantityContainer subtotal";
+}
+.shopping-cart-image {
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  object-fit: contain;
+}
+
+.shopping-cart-item-title {
+  grid-area: title;
+  width: 40vw;
+}
+
+.quantity-container {
+  grid-area: quantityContainer;
+  margin: auto;
+  display: grid;
+  grid-template-areas: 
+  "quantity plus" 
+  "quantity minus";
+}
+.quantity {
+  grid-area: quantity;
+}
+.add {
+  grid-area: plus;
+}
+.subtract {
+  grid-area: minus;
+}
+
+.subtotal {
+  width: 5vw;
+  grid-area: subtotal;
+  /* border-left: 1px solid; */
+}
+
+.remove {
+  grid-area: delete;
+  width: 30px;
+  height: 30px;
+}
+
+.price {
+  margin: auto;
+  grid-area: price;
+}
+
+.multiply-sign {
+  margin: auto;
+  width: 10px;
+  grid-area: sign;
+}
