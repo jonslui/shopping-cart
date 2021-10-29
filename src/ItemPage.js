@@ -29,7 +29,7 @@ const ItemPage = (props) => {
 
   return (
     <div>
-      <NavBar />
+      <NavBar numberOfItems = {props.numberOfItems}/>
       <div id = 'loader' />
       <div id = 'item-container'>
         <img src = {item.image} alt = {item.id} className = 'item-image'/>

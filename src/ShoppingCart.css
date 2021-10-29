@@ -21,8 +21,14 @@
 
   display: grid;
   grid-template-areas: 
-  "image title quantityContainer subtotal";
-  /* "image price sign quantityContainer subtotal"; */
+  "delete image title quantityContainer subtotal";
+}
+.delete {
+  grid-area: delete;
+  margin: auto;
+  width: 30px;
+  height: 30px;
+  /* border: none; */
 }
 
 .shopping-cart-image-container {

@@ -5,7 +5,7 @@ import './App.css'
 const Main = (props) => {  
   return (
     <div className = 'Title'>
-      <NavBar />
+      <NavBar numberOfItems = {props.numberOfItems}/>
       <h1>Home</h1>
     </div>
   );

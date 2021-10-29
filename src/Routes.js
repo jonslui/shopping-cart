@@ -14,6 +14,7 @@ const Routes = (props) => {
           <Shop {...routeProps}
             addCartItem = {props.addCartItem}
             removeCartItem = {props.removeCartItem}
+            numberOfItems = {props.numberOfItems}
           />
         }/>
 
@@ -21,6 +22,7 @@ const Routes = (props) => {
           <ItemPage {...routeProps} 
             addCartItem = {props.addCartItem}
             removeCartItem = {props.removeCartItem}
+            numberOfItems = {props.numberOfItems}
           />
         }/>
         
@@ -29,12 +31,27 @@ const Routes = (props) => {
             addCartItem = {props.addCartItem}
             removeCartItem = {props.removeCartItem}
             cartContents = {props.cartContents}
+            numberOfItems = {props.numberOfItems}
+            deleteCartItem = {props.deleteCartItem}
           />
         }/>
 
-        <Route exact path = '/aboutus' component = {AboutUs} />
-        <Route exact path = '/' component = {Main} /> 
-        <Route component = {NotFound}/>
+        <Route exact path = '/aboutus' render = { routeProps => 
+          <AboutUs {...routeProps}
+          numberOfItems = {props.numberOfItems}
+          /> 
+        }/>
+        <Route exact path = '/' render = { routeProps => 
+          <Main {...routeProps}
+          numberOfItems = {props.numberOfItems}
+          /> 
+        }/> 
+
+        <Route render = { routeProps => 
+          <NotFound {...routeProps}
+          numberOfItems = {props.numberOfItems}
+          /> 
+        }/>
       </Switch>
     </BrowserRouter>
   );

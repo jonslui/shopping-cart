@@ -41,12 +41,12 @@ const ShoppingCart = (props) => {
     }
   }
 
-  const increaseTotal = (price) => {
-    setTotal((Number.parseFloat(total) + price).toFixed(2))
+  const increaseTotal = (price, quantity = 1) => {
+    setTotal((Number.parseFloat(total) + (price * quantity)).toFixed(2))
   }
 
-  const decreaseTotal = (price) => {
-    setTotal((Number.parseFloat(total) - price).toFixed(2))
+  const decreaseTotal = (price, quantity = 1) => {
+    setTotal((Number.parseFloat(total) - (price * quantity)).toFixed(2))
   }
 
   const subtotal = (price, quantity) => {
@@ -55,7 +55,7 @@ const ShoppingCart = (props) => {
 
   return (
     <div>
-      <NavBar />
+      <NavBar numberOfItems = {props.numberOfItems}/>
       <h1 className = 'Title'>My Cart</h1>
 
       <div id = 'loader' />
@@ -66,7 +66,14 @@ const ShoppingCart = (props) => {
             if (items[id]){
               return ( 
                 <div key = {id} className = 'shopping-cart-item'>
-                  
+                  <button type = 'submit'
+                    className = 'delete'
+                    onClick = {() =>{
+                      props.deleteCartItem(id);
+                      decreaseTotal(items[id].price, props.cartContents[id]);
+                    }}>
+                  X</button>
+
                   <div className = 'shopping-cart-image-container'>
                     <img src = {items[id].image} alt = {id} className = 'shopping-cart-image'/> 
                   </div>

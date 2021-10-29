@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 import './Shop.css';
 import './LoadingAnimation.css';
 
-const Shop = () => {
+const Shop = (props) => {
   const [items, setItems] = useState([]);
   const shopStyle = {
     textDecoration: 'none',
@@ -35,7 +35,7 @@ const Shop = () => {
 
   return (
     <div>
-      <NavBar />
+      <NavBar numberOfItems = {props.numberOfItems}/>
       <h1 className = 'title'>Shop</h1>
       <div id='loader'/>
       <div className = 'items'>

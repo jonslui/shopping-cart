@@ -1,10 +1,10 @@
 import React from 'react';
 import NavBar from './NavBar';
 
-const NotFound = () => {
+const NotFound = (props) => {
   return (
     <div className = 'Title'>
-      <NavBar />
+      <NavBar numberOfItems = {props.numberOfItems}/>
       <h1>
         Generic Not Found Message
       </h1>

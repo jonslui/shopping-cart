@@ -21,7 +21,7 @@ const NavBar = (props) => {
           <Link to = '/aboutus' style = {navStyle}>About Us</Link>
         </li>
         <li>
-          <Link to = '/shoppingcart' style = {navStyle}>My Cart</Link>
+          <Link to = '/shoppingcart' style = {navStyle}>My Cart ({props.numberOfItems})</Link>
         </li>
       </ul>
     </nav>
