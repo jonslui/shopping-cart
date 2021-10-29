@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './App.css';
 
-const NavBar = () => {
+const NavBar = (props) => {
   const navStyle = {
     color: 'white',
     textDecoration: 'none'

@@ -8,12 +8,12 @@ body{
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 10vh;
+  height: 8vh;
   background: rgb(123, 139, 141);
   color: white;
 }
 .nav-links {
-  width: 50%;
+  width: 60vw;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -25,54 +25,6 @@ body{
 .Title {
   text-align: center;
 }
-
-
-/* Shop Page */
-.items {
-  display: flex;
-  flex-wrap: wrap;
-  column-gap: 5vw;
-  row-gap: 3vw;
-  justify-content: center;
-}
-.item {
-  display: grid;
-  height: 308px;
-  width: 10vw;
-  min-width: 200px;
-  border-top: solid 1px gray;
-  padding-top: 5px;
-}
-.item:hover{
-    background: black;
-    opacity: 50%
-}
-
-.items-image-container {
-  width: 100%;
-  height: 200px;
-  overflow: hidden;
-  background: white;
-}
-.items-image {
-  max-width: 100%;
-  height: auto;
-  margin: auto;
-}
-.items-info {
-  display: flex;
-  flex-wrap: wrap;
-  background: white;
-  height: 120px;
-  border-bottom: solid 1px gray;
-
-}
-.rating-info {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  width: 100%;
-}
-
 
 /* Item Page */
 .item-title{
@@ -103,18 +55,4 @@ body{
   'info'
   'price'
   'add';
-}
-
-#loader {
-  margin: auto;
-  border: 16px solid #f3f3f3; /* Light grey */
-  border-top: 16px solid #3498db; /* Blue */
-  border-radius: 50%;
-  width: 120px;
-  height: 120px;
-  animation: spin 2s linear infinite;
-}
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
 }

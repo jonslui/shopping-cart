@@ -2,7 +2,7 @@ import React from 'react';
 import NavBar from './NavBar';
 import './App.css'
 
-function Main() {  
+const Main = (props) => {  
   return (
     <div className = 'Title'>
       <NavBar />

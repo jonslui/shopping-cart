@@ -1,26 +1,52 @@
 import React, {useState, useEffect} from 'react';
 import NavBar from './NavBar';
 import './ShoppingCart.css';
+import './LoadingAnimation.css';
 
 const ShoppingCart = (props) => {
   const [items, setItems] = useState([]);
+  const [total, setTotal] = useState(0);
 
   useEffect(() => {
-    fetchItems();
+    const ac = new AbortController();
+    fetchItems(ac);
+
+    return () => {
+      ac.abort();
+    }
   }, [])
 
-  const fetchItems = async () => {
-    let obj = {};
-    let keys = Object.keys(props.cartContents);
+  const fetchItems = async (ac) => {
+    try{
+      let obj = {};
+      let total = 0;
+      let keys = Object.keys(props.cartContents);
 
-    for (const id of keys){
-      const data = await fetch(`https://fakestoreapi.com/products/${id}`)
-      const item = await data.json();
-      obj[item.id] = item;
+      for (const id of keys){
+        const data = await fetch(`https://fakestoreapi.com/products/${id}`, {signal: ac.signal})
+        const item = await data.json();
+        obj[item.id] = item;
+        total = total + (item.price * props.cartContents[id]);
+      }
+
+      setItems(obj);
+      setTotal(total);  
+
+      document.getElementById('loader').style.display = 'none';
+    
+    } catch(err) {
+      console.log(err);
+      document.getElementById('loader').style.display = 'none';
+
     }
+  }
 
-    setItems(obj);
-    document.getElementById('loader').style.display = 'none';
+  const increaseTotal = (price) => {
+    setTotal((Number.parseFloat(total) + price).toFixed(2))
+  }
+
+  const decreaseTotal = (price) => {
+    setTotal((Number.parseFloat(total) - price).toFixed(2))
   }
 
   const subtotal = (price, quantity) => {
@@ -31,7 +57,9 @@ const ShoppingCart = (props) => {
     <div>
       <NavBar />
       <h1 className = 'Title'>My Cart</h1>
+
       <div id = 'loader' />
+
       <div className = 'shopping-cart-container'>
         {
           Object.keys(props.cartContents).map((id) => {
@@ -42,29 +70,39 @@ const ShoppingCart = (props) => {
                   <div className = 'shopping-cart-image-container'>
                     <img src = {items[id].image} alt = {id} className = 'shopping-cart-image'/> 
                   </div>
-                  
-                  <div className = 'text-container'>
-                    <div className = 'shopping-cart-item-title'>{items[id].title}</div>
+                    
+                  <div className = 'shopping-cart-item-title'>{items[id].title}</div>
 
-
-                    <div className = 'price'>${items[id].price}</div>
-                    <div className = 'multiply-sign'>x</div>
-                    <div className = 'quantity-container'>
-                      <div className = 'quantity'>{props.cartContents[id]}</div>
-                      <button type = 'submit' onClick = {() => props.addCartItem(id)} className = 'add'>+</button>
-                      <button type = 'submit' onClick = {() => props.removeCartItem(id)} className = 'subtract'>-</button>
-                    </div>
+                  <div className = 'quantity-container'>
+                    <button type = 'submit' 
+                      onClick = {() => {
+                        props.removeCartItem(id);
+                        decreaseTotal(items[id].price);
+                      }}
+                      className = 'subtract'>
+                    -</button>
+                    
+                    <div className = 'quantity'>{props.cartContents[id]}</div>
+                    
+                    <button type = 'submit' 
+                      onClick = {() => {
+                        props.addCartItem(id);
+                        increaseTotal(items[id].price);
+                      }}
+                      className = 'add'>
+                    +</button>
                   
-                    <div className = 'subtotal'>Subtotal: ${subtotal(items[id].price, props.cartContents[id])}</div>
                   </div>
-
+                
+                  <div className = 'subtotal'>${subtotal(items[id].price, props.cartContents[id])}</div>
                 </div>
               )
             }
           })
         }
-      <div>Total:</div> 
       </div>
+
+      <div id = 'total'>Checkout: ${total}</div>
     </div>
   )
 }

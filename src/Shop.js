@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import NavBar from './NavBar';
 import {Link} from 'react-router-dom';
-import './App.css';
+import './Shop.css';
+import './LoadingAnimation.css';
 
 const Shop = () => {
   const [items, setItems] = useState([]);
@@ -11,21 +12,31 @@ const Shop = () => {
   }
  
   useEffect(() => {
-    fetchItems();
+    const ac = new AbortController();
+    fetchItems(ac);
+
+    return () => {
+      ac.abort();
+    }
   }, [])
 
 
-  const fetchItems = async () => {
-    const data = await fetch(`https://fakestoreapi.com/products/`)
-    const items = await data.json()
-    setItems(items)
-    document.getElementById('loader').style.display = 'none';
+  const fetchItems = async (ac) => {
+    try {
+      const data = await fetch(`https://fakestoreapi.com/products/`, {signal: ac.signal})
+      const items = await data.json()
+      setItems(items)
+      document.getElementById('loader').style.display = 'none';
+    } catch(err) {
+      console.log(err)
+    }
+    
   }
 
   return (
-    <div className = 'Title'>
+    <div>
       <NavBar />
-      <h1>Shop</h1>
+      <h1 className = 'title'>Shop</h1>
       <div id='loader'/>
       <div className = 'items'>
         {items.map((item) => { return (

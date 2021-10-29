@@ -1,20 +1,30 @@
 import React, {useState, useEffect} from 'react';
 import NavBar from './NavBar';
 import './App.css';
+import './LoadingAnimation.css';
 
 const ItemPage = (props) => {
   const [item, setItem] = useState({});
 
   useEffect(() => {
-    fetchItem();
+    const ac = new AbortController();
+    fetchItem(ac);
+
+    return () => {
+      ac.abort();
+    }
   }, [])
 
-  const fetchItem = async () => {
-    const data = await fetch(`https://fakestoreapi.com/products/${props.match.params.id}`)
-    const itemData = await data.json()
-    setItem(itemData);
-    document.getElementById('loader').style.display = 'none';
-    document.getElementById('item-container').style.display = 'flex';
+  const fetchItem = async (ac) => {
+    try{
+      const data = await fetch(`https://fakestoreapi.com/products/${props.match.params.id}`, {signal: ac.signal})
+      const itemData = await data.json();
+      setItem(itemData);
+      document.getElementById('loader').style.display = 'none';
+      document.getElementById('item-container').style.display = 'flex';
+    } catch(err) {
+      console.log(err)
+    }
   }
 
   return (
