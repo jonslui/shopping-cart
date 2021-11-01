@@ -38,21 +38,22 @@ const Shop = (props) => {
       <NavBar numberOfItems = {props.numberOfItems}/>
       <h1 className = 'title'>Shop</h1>
       <div id='loader'/>
-      <div className = 'items'>
+      <div className = 'shop-items'>
         {items.map((item) => { return (
-            <div className = 'item' key = {item.id}>
+            <div className = 'shop-item' key = {item.id}>
               <Link to = {`/shop/${item.id}`} style = {shopStyle}>
-                <div className = 'items-image-container'>
-                  <img src = {item.image} alt = {item.id} className = 'items-image'/>                
+                <div className = 'shop-item-image-container'>
+                  <img src = {item.image} alt = {item.id} className = 'shop-item-image'/>                
                 </div>
 
-                <div className = 'items-info'>
+                <div className = 'shop-item-info'>
                   {item.title}
-                  <div>
-                    <div>Stars: {item.rating.rate}</div>
-                    <div>Raters: {item.rating.count}</div>
-                    <div>${item.price}</div>
+                  <div className = 'shop-item-details'>
+                    <div>{item.rating.rate} ★</div>
+                    <div>{item.rating.count} 👤</div>
                   </div>
+
+                  <div>${item.price}</div>
                 </div>
               </Link>
             </div>

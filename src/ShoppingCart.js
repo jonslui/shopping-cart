@@ -16,26 +16,34 @@ const ShoppingCart = (props) => {
     }
   }, [])
 
+
   const fetchItems = async (ac) => {
     try{
       let obj = {};
       let total = 0;
+
+      // These keys are ids for store objects the user added to their cart previously
       let keys = Object.keys(props.cartContents);
 
+      // Fetching data for items in cart and adding it to a temp object
       for (const id of keys){
         const data = await fetch(`https://fakestoreapi.com/products/${id}`, {signal: ac.signal})
         const item = await data.json();
         obj[item.id] = item;
+
+        // Add the quantity of each of these items to total
         total = total + (item.price * props.cartContents[id]);
       }
 
       setItems(obj);
       setTotal(total);  
 
-      document.getElementById('loader').style.display = 'none';
-    
+      // remove loader once async functions finish
+      document.getElementById('loader').style.display = 'none'
     } catch(err) {
       console.log(err);
+      
+      // remove loader in the case of error so ti doesnt run endlessly
       document.getElementById('loader').style.display = 'none';
 
     }
@@ -72,7 +80,7 @@ const ShoppingCart = (props) => {
                       props.deleteCartItem(id);
                       decreaseTotal(items[id].price, props.cartContents[id]);
                     }}>
-                  X</button>
+                  x</button>
 
                   <div className = 'shopping-cart-image-container'>
                     <img src = {items[id].image} alt = {id} className = 'shopping-cart-image'/> 

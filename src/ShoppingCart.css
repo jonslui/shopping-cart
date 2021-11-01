@@ -18,17 +18,28 @@
   display: grid;
   grid-template-rows: 2;
   border-top: 1px solid;
+  color: gray;
 
   display: grid;
   grid-template-areas: 
   "delete image title quantityContainer subtotal";
 }
+.shopping-cart-item:hover{
+  color: black;
+}
+
 .delete {
   grid-area: delete;
   margin: auto;
   width: 30px;
   height: 30px;
-  /* border: none; */
+  border: none;
+  background: white;
+  color: gray;
+  font-size: 25px;
+}
+.delete:hover {
+  color: red;
 }
 
 .shopping-cart-image-container {
@@ -51,38 +62,50 @@
 
 .quantity-container {
   grid-area: quantityContainer;
+
   margin: auto;
   display: grid;
   grid-template-areas: 
   "plus quantity minus";
+
 }
 .quantity {
   grid-area: quantity;
   text-align: center;
   width: 30px;
   height: 30px;
+  font-size: 20px;
 }
 .add {
   grid-area: plus;
   width: 30px;
   height: 30px;
+  border: none;
+  color: gray;
+  background-color: white;
+  font-size: 25px;
 }
+.add:hover{
+  color: green;
+}
+
 .subtract {
   grid-area: minus;
   width: 30px;
   height: 30px;
+  border: none;
+  color: gray;
+  background-color: white;
+  font-size: 25px;
+}
+.subtract:hover{
+  color: red;
 }
 
 .subtotal {
   width: 5vw;
   grid-area: subtotal;
   margin: auto;
-}
-
-.remove {
-  grid-area: delete;
-  width: 30px;
-  height: 30px;
 }
 
 .price {

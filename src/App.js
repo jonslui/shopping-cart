@@ -39,7 +39,8 @@ function App() {
     }
   }
 
-
+  // remove number of items of clicked type from numberOfItems,
+  // then remove that item from the cartItems object
   function deleteCartItem(id){
     setNumberOfItems(numberOfItems - cartItems[id]);
     let prevState = {...cartItems};

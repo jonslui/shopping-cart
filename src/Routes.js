@@ -21,7 +21,6 @@ const Routes = (props) => {
         <Route path = '/shop/:id' render = { routeProps =>
           <ItemPage {...routeProps} 
             addCartItem = {props.addCartItem}
-            removeCartItem = {props.removeCartItem}
             numberOfItems = {props.numberOfItems}
           />
         }/>

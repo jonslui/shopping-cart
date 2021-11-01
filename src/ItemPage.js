@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import NavBar from './NavBar';
-import './App.css';
+import './ItemPage.css';
 import './LoadingAnimation.css';
 
 const ItemPage = (props) => {
@@ -32,18 +32,22 @@ const ItemPage = (props) => {
       <NavBar numberOfItems = {props.numberOfItems}/>
       <div id = 'loader' />
       <div id = 'item-container'>
-        <img src = {item.image} alt = {item.id} className = 'item-image'/>
+        <div className = 'image-container'>
+          <img src = {item.image} alt = {item.id} className = 'image'/>
+        </div>
         <div className = 'item-info'>
-        <h1 className = 'item-title'>{item.title}</h1>              
-          {/* <div className = 'rating-info'>
-            <div>Stars: {item.rating.rate}</div>
-            <div>Raters: {item.rating.count}</div>
-          </div>   */}
+          <h1 className = 'item-title'>{item.title}</h1>
+          {
+            item.rating ? (
+              <div className = 'rating-info'>
+                <div>{item.rating.rate} ★</div>
+                <div>{item.rating.count} 👤</div>
+              </div> 
+            ) : null
+          }
           <p>{item.description}</p>
           <div>${item.price}</div>
-
-          <button type = 'submit' onClick = {() => props.addCartItem(item.id)}>Add to Cart</button>
-          <button type = 'submit' onClick = {() => props.removeCartItem(item.id)}>Remove from Cart</button>
+          <button type = 'submit' className = 'add-button' onClick = {() => props.addCartItem(item.id)}>Add to Cart</button>
         </div>
       </div>
     </div>
