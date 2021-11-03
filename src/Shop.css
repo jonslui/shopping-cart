@@ -8,21 +8,23 @@
   flex-wrap: wrap;
   column-gap: 3vw;
   row-gap: 3vw;
+  padding-bottom: 8vh;
   justify-content: center;
   width: 70vw;
   margin: auto;
 }
 
 .shop-item {
-  border: 1px solid gray;
+  background: white;
+  border-bottom: 1px solid rgb(141, 131, 131);
   width: 20vw;
   min-width: 150px;
   padding-top: 5px;
 }
 .shop-item:hover{
-  opacity: 50%
-}
+  box-shadow: 5px 5px 5px 5px gray;
 
+}
 .shop-item-image-container {
   height: 25vh;
   min-width: 150px;
@@ -35,7 +37,9 @@
   object-fit: contain;
 }
 .shop-item-info {
+  text-align: center;
   padding-left: 5px;
+  padding-right: 5px;
 }
 .shop-item-details {
   display: grid;

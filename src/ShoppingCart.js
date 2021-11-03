@@ -1,11 +1,12 @@
 import React, {useState, useEffect} from 'react';
 import NavBar from './NavBar';
+import {Link} from 'react-router-dom';
 import './ShoppingCart.css';
 import './LoadingAnimation.css';
 
 const ShoppingCart = (props) => {
-  const [items, setItems] = useState([]);
-  const [total, setTotal] = useState(0);
+  const [items, setItems] = useState({});
+  const [cartTotal, setCartTotal] = useState(0);
 
   useEffect(() => {
     const ac = new AbortController();
@@ -36,7 +37,7 @@ const ShoppingCart = (props) => {
       }
 
       setItems(obj);
-      setTotal(total);  
+      setCartTotal(total);  
 
       // remove loader once async functions finish
       document.getElementById('loader').style.display = 'none'
@@ -50,15 +51,23 @@ const ShoppingCart = (props) => {
   }
 
   const increaseTotal = (price, quantity = 1) => {
-    setTotal((Number.parseFloat(total) + (price * quantity)).toFixed(2))
+    setCartTotal(cartTotal + (price * quantity))
   }
 
   const decreaseTotal = (price, quantity = 1) => {
-    setTotal((Number.parseFloat(total) - (price * quantity)).toFixed(2))
+    setCartTotal(cartTotal - (price * quantity))
   }
 
   const subtotal = (price, quantity) => {
-    return Number.parseFloat(price * quantity).toFixed(2);
+    return (price * quantity).toFixed(2);
+  }
+
+  const completePurchase = () => {
+    Object.keys(items).forEach((id) => {
+      props.deleteCartItem(id);
+    })
+    setItems({})
+    setCartTotal(0)
   }
 
   return (
@@ -81,10 +90,12 @@ const ShoppingCart = (props) => {
                       decreaseTotal(items[id].price, props.cartContents[id]);
                     }}>
                   x</button>
-
-                  <div className = 'shopping-cart-image-container'>
-                    <img src = {items[id].image} alt = {id} className = 'shopping-cart-image'/> 
-                  </div>
+                  
+                  <Link to = {`/shop/${id}`}>
+                    <div className = 'shopping-cart-image-container'>
+                      <img src = {items[id].image} alt = {id} className = 'shopping-cart-image'/> 
+                    </div>
+                  </Link>
                     
                   <div className = 'shopping-cart-item-title'>{items[id].title}</div>
 
@@ -117,7 +128,7 @@ const ShoppingCart = (props) => {
         }
       </div>
 
-      <div id = 'total'>Checkout: ${total}</div>
+      <div id = 'total' onClick = {completePurchase}>Checkout: ${cartTotal.toFixed(2)}</div>
     </div>
   )
 }

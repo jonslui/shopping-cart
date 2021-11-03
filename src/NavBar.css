@@ -4,7 +4,9 @@
   align-items: center;
   height: 8vh;
   background: #5E6977;
-
+  position: fixed;
+  top: 0;
+  width: 100%;
   color: white;
 }
 .nav-links {

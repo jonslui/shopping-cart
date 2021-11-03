@@ -35,20 +35,24 @@ const ItemPage = (props) => {
         <div className = 'image-container'>
           <img src = {item.image} alt = {item.id} className = 'image'/>
         </div>
-        <div className = 'item-info'>
-          <h1 className = 'item-title'>{item.title}</h1>
-          {
-            item.rating ? (
+        {
+          item.rating ? (
+            <div className = 'item-info'>
+              <h1 className = 'item-title'>{item.title}</h1>
+              
               <div className = 'rating-info'>
                 <div>{item.rating.rate} ★</div>
                 <div>{item.rating.count} 👤</div>
               </div> 
-            ) : null
-          }
-          <p>{item.description}</p>
-          <div>${item.price}</div>
-          <button type = 'submit' className = 'add-button' onClick = {() => props.addCartItem(item.id)}>Add to Cart</button>
-        </div>
+
+              <p>{item.description}</p>
+          
+              <div>${item.price.toFixed(2)}</div>
+          
+              <button type = 'submit' className = 'add-button' onClick = {() => props.addCartItem(item.id)}>Add to Cart</button>
+            </div>
+          ) : null 
+        }
       </div>
     </div>
   )

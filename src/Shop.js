@@ -48,12 +48,13 @@ const Shop = (props) => {
 
                 <div className = 'shop-item-info'>
                   {item.title}
+
                   <div className = 'shop-item-details'>
                     <div>{item.rating.rate} ★</div>
                     <div>{item.rating.count} 👤</div>
                   </div>
 
-                  <div>${item.price}</div>
+                  <div>${item.price.toFixed(2)}</div>
                 </div>
               </Link>
             </div>

@@ -1,6 +1,7 @@
 /* Page Headers */
 .Title {
   text-align: center;
+
 }
 
 .shopping-cart-container {
@@ -16,16 +17,12 @@
 
 .shopping-cart-item {
   display: grid;
-  grid-template-rows: 2;
+  padding-top: 3vh;
   border-top: 1px solid;
-  color: gray;
-
+  color: black;
   display: grid;
   grid-template-areas: 
   "delete image title quantityContainer subtotal";
-}
-.shopping-cart-item:hover{
-  color: black;
 }
 
 .delete {
