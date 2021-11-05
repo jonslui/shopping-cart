@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import NavBar from './NavBar';
 import {Link} from 'react-router-dom';
-import './Shop.css';
-import './LoadingAnimation.css';
+import './stylesheets/Shop.css';
+import './stylesheets/LoadingAnimation.css';
 
 const Shop = (props) => {
   const [items, setItems] = useState([]);

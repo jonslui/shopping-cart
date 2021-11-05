@@ -12,26 +12,25 @@ const Routes = (props) => {
       <Switch>
         <Route exact path = '/shop' render = { routeProps => 
           <Shop {...routeProps}
-            addCartItem = {props.addCartItem}
-            removeCartItem = {props.removeCartItem}
             numberOfItems = {props.numberOfItems}
           />
         }/>
 
         <Route path = '/shop/:id' render = { routeProps =>
           <ItemPage {...routeProps} 
-            addCartItem = {props.addCartItem}
+            increaseItemQuantity = {props.increaseItemQuantity}
             numberOfItems = {props.numberOfItems}
           />
         }/>
         
         <Route exact path = '/shoppingcart' render = { routeProps =>
           <ShoppingCart {...routeProps}
-            addCartItem = {props.addCartItem}
-            removeCartItem = {props.removeCartItem}
+            increaseItemQuantity = {props.increaseItemQuantity}
+            decreaseItemQuantity = {props.decreaseItemQuantity}
             cartContents = {props.cartContents}
             numberOfItems = {props.numberOfItems}
             deleteCartItem = {props.deleteCartItem}
+            clearCart = {props.clearCart}
           />
         }/>
 

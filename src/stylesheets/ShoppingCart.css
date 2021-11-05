@@ -1,17 +1,14 @@
-/* Page Headers */
-.Title {
+.title {
   text-align: center;
-
 }
 
 .shopping-cart-container {
   display: grid;
   row-gap: 3vh;
   width: 60vw;
-  min-width: 450px;
+  min-width: 300px;
   margin: auto;
   padding-bottom: 10vh;
-
 }
 
 
@@ -59,7 +56,6 @@
 
 .quantity-container {
   grid-area: quantityContainer;
-
   margin: auto;
   display: grid;
   grid-template-areas: 
@@ -105,18 +101,35 @@
   margin: auto;
 }
 
-.price {
-  margin: auto;
-  grid-area: price;
-}
-
 .multiply-sign {
   margin: auto;
   width: 10px;
   grid-area: sign;
 }
 
-#total {
+#purchase-complete-container {
+  display: none;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background: black;
+  opacity: 80%;
+  z-index: 1;
+}
+
+.purchase-complete-notification {
+  text-align: center;
+  margin: auto;
+  padding: 10vh;
+  width: 50vw;
+  font-size: 25px;
+  background: white;
+}
+
+#total-container {
+  display: flex;
   width: 100%;
   height: 10vh;
   background: rgb(123, 139, 141);
@@ -126,6 +139,10 @@
   text-align: center;
   font-size: 30px;
 }
-#total:hover {
+#total-container:hover {
   opacity: 1;
+}
+
+.total-text{
+  margin: auto;
 }

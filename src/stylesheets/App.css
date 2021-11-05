@@ -3,3 +3,7 @@ body{
   padding-top: 8vh;
   font-family: 'Roboto';
 }
+
+.text-container {
+  text-align: center;
+}

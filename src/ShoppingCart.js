@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import NavBar from './NavBar';
 import {Link} from 'react-router-dom';
-import './ShoppingCart.css';
-import './LoadingAnimation.css';
+import './stylesheets/ShoppingCart.css';
+import './stylesheets/LoadingAnimation.css';
 
 const ShoppingCart = (props) => {
   const [items, setItems] = useState({});
@@ -44,36 +44,53 @@ const ShoppingCart = (props) => {
     } catch(err) {
       console.log(err);
       
-      // remove loader in the case of error so ti doesnt run endlessly
+      // remove loader in the case of error so it doesnt run endlessly
       document.getElementById('loader').style.display = 'none';
 
     }
   }
 
-  const increaseTotal = (price, quantity = 1) => {
-    setCartTotal(cartTotal + (price * quantity))
+  const onDecreaseQuantityButton = (id, price) => {
+    props.decreaseItemQuantity(id);
+    setCartTotal(cartTotal - price);
   }
 
-  const decreaseTotal = (price, quantity = 1) => {
-    setCartTotal(cartTotal - (price * quantity))
+  const onIncreaseQuantityButton = (id, price) => {
+    props.increaseItemQuantity(id);
+    setCartTotal(cartTotal + price)
+  }
+
+  const onDeleteItemButton = (id, price, quantity) => {
+    props.deleteCartItem(id);
+    setCartTotal(cartTotal - (price * quantity));
   }
 
   const subtotal = (price, quantity) => {
     return (price * quantity).toFixed(2);
   }
 
-  const completePurchase = () => {
-    Object.keys(items).forEach((id) => {
-      props.deleteCartItem(id);
-    })
+  const onCompletePurchaseButton = () => {
+    if(cartTotal > 0) {
+      showPurchaseComplete();
+      clearPurchasedItems();
+    }
+  }
+
+  const clearPurchasedItems = () => {
+    props.clearCart();
     setItems({})
     setCartTotal(0)
+  }
+
+  const showPurchaseComplete = () => {
+    let notice = document.getElementById('purchase-complete-container');
+    notice.style.display = 'flex';
   }
 
   return (
     <div>
       <NavBar numberOfItems = {props.numberOfItems}/>
-      <h1 className = 'Title'>My Cart</h1>
+      <h1 className = 'title'>My Cart</h1>
 
       <div id = 'loader' />
 
@@ -83,13 +100,13 @@ const ShoppingCart = (props) => {
             if (items[id]){
               return ( 
                 <div key = {id} className = 'shopping-cart-item'>
+                  
                   <button type = 'submit'
                     className = 'delete'
                     onClick = {() =>{
-                      props.deleteCartItem(id);
-                      decreaseTotal(items[id].price, props.cartContents[id]);
-                    }}>
-                  x</button>
+                      onDeleteItemButton(id, items[id].price, props.cartContents[id]);
+                    }}
+                  >x</button>
                   
                   <Link to = {`/shop/${id}`}>
                     <div className = 'shopping-cart-image-container'>
@@ -101,23 +118,20 @@ const ShoppingCart = (props) => {
 
                   <div className = 'quantity-container'>
                     <button type = 'submit' 
+                      className = 'add'
                       onClick = {() => {
-                        props.removeCartItem(id);
-                        decreaseTotal(items[id].price);
+                        onIncreaseQuantityButton(id, items[id].price);
                       }}
-                      className = 'subtract'>
-                    -</button>
+                    >+</button>
                     
                     <div className = 'quantity'>{props.cartContents[id]}</div>
                     
-                    <button type = 'submit' 
+                    <button type = 'submit'
+                      className = 'subtract' 
                       onClick = {() => {
-                        props.addCartItem(id);
-                        increaseTotal(items[id].price);
+                        onDecreaseQuantityButton(id, items[id].price);
                       }}
-                      className = 'add'>
-                    +</button>
-                  
+                    >-</button>   
                   </div>
                 
                   <div className = 'subtotal'>${subtotal(items[id].price, props.cartContents[id])}</div>
@@ -128,7 +142,21 @@ const ShoppingCart = (props) => {
         }
       </div>
 
-      <div id = 'total' onClick = {completePurchase}>Checkout: ${cartTotal.toFixed(2)}</div>
+
+      <div id = 'purchase-complete-container' onClick = {() => {document.getElementById('purchase-complete-container').style.display = 'none'}}>
+        <div className = 'purchase-complete-notification'>
+            Purchase Complete!
+        </div>
+      </div>
+
+      <div id = 'total-container' onClick = {() => {
+        onCompletePurchaseButton();
+      }}>
+        <div className = 'total-text'>
+         Checkout: ${cartTotal.toFixed(2)}
+        </div>
+      </div>
+
     </div>
   )
 }

@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import NavBar from './NavBar';
-import './ItemPage.css';
-import './LoadingAnimation.css';
+import './stylesheets/ItemPage.css';
+import './stylesheets/LoadingAnimation.css';
 
 const ItemPage = (props) => {
   const [item, setItem] = useState({});
@@ -47,9 +47,9 @@ const ItemPage = (props) => {
 
               <p>{item.description}</p>
           
-              <div>${item.price.toFixed(2)}</div>
+              <div style = {{'text-align': 'center'}}>${item.price.toFixed(2)}</div>
           
-              <button type = 'submit' className = 'add-button' onClick = {() => props.addCartItem(item.id)}>Add to Cart</button>
+              <button type = 'submit' className = 'add-button' onClick = {() => props.increaseItemQuantity(item.id)}>Add to Cart</button>
             </div>
           ) : null 
         }

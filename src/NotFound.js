@@ -1,17 +1,21 @@
 import React from 'react';
 import NavBar from './NavBar';
+import './stylesheets/App.css';
 
 const NotFound = (props) => {
   return (
-    <div className = 'Title'>
+    <div>
       <NavBar numberOfItems = {props.numberOfItems}/>
-      <h1>
-        Generic Not Found Message
-      </h1>
+      
+      <div className = 'text-container'>
+        <h1>
+          Page Not Found
+        </h1>
 
-      <p>
-        Oh no...
-      </p>
+        <p>
+          Please try again...
+        </p>
+      </div>
     </div>
   )
 }

@@ -8,9 +8,10 @@
   top: 0;
   width: 100%;
   color: white;
+
 }
 .nav-links {
-  width: 60vw;
+  width: 90vw;
   display: flex;
   justify-content: space-around;
   align-items: center;

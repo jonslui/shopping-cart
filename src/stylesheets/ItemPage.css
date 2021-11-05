@@ -8,6 +8,7 @@
   column-gap: 5vw;
   margin: auto;
   justify-content: center;
+  padding-bottom: 8vh;
 }
 .image-container {
   width: 20vw;
@@ -20,19 +21,17 @@
   object-fit: contain;
 }
 .rating-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   text-align: center;
 }
 .item-info{
   grid-area: info;
+  row-gap: 1vh;
   display: grid;
   width: 40vw;
   min-width: 300px;
   max-width: 500px;
-  grid-template-areas: 
-  'name'
-  'info'
-  'price'
-  'add';
 }
 
 .add-button {
