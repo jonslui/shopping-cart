@@ -10,20 +10,20 @@ const Routes = (props) => {
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path = '/shop' render = { routeProps => 
+        <Route exact path = '/shopping-cart/shop' render = { routeProps => 
           <Shop {...routeProps}
             numberOfItems = {props.numberOfItems}
           />
         }/>
 
-        <Route path = '/shop/:id' render = { routeProps =>
+        <Route path = '/shopping-cart/shop/:id' render = { routeProps =>
           <ItemPage {...routeProps} 
             increaseItemQuantity = {props.increaseItemQuantity}
             numberOfItems = {props.numberOfItems}
           />
         }/>
         
-        <Route exact path = '/shoppingcart' render = { routeProps =>
+        <Route exact path = '/shopping-cart/shoppingcart' render = { routeProps =>
           <ShoppingCart {...routeProps}
             increaseItemQuantity = {props.increaseItemQuantity}
             decreaseItemQuantity = {props.decreaseItemQuantity}
@@ -34,12 +34,12 @@ const Routes = (props) => {
           />
         }/>
 
-        <Route exact path = '/aboutus' render = { routeProps => 
+        <Route exact path = '/shopping-cart/aboutus' render = { routeProps => 
           <AboutUs {...routeProps}
           numberOfItems = {props.numberOfItems}
           /> 
         }/>
-        <Route exact path = '/' render = { routeProps => 
+        <Route exact path = '/shopping-cart/' render = { routeProps => 
           <Main {...routeProps}
           numberOfItems = {props.numberOfItems}
           /> 

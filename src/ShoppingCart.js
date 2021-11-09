@@ -108,7 +108,7 @@ const ShoppingCart = (props) => {
                     }}
                   >x</button>
                   
-                  <Link to = {`/shop/${id}`}>
+                  <Link to = {`/shopping-cart/shop/${id}`}>
                     <div className = 'shopping-cart-image-container'>
                       <img src = {items[id].image} alt = {id} className = 'shopping-cart-image'/> 
                     </div>

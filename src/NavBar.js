@@ -12,16 +12,16 @@ const NavBar = (props) => {
     <nav className = 'NavBar'>
       <div className = 'nav-links'>
         <li>
-          <Link to = '/' style = {navStyle}>Home</Link>
+          <Link to = '/shopping-cart/' style = {navStyle}>Home</Link>
         </li>
         <li>
-          <Link to = '/shop' style = {navStyle}>Shop</Link>
+          <Link to = '/shopping-cart/shop' style = {navStyle}>Shop</Link>
         </li>
         <li>
-          <Link to = '/aboutus' style = {navStyle}>About Us</Link>
+          <Link to = '/shopping-cart/aboutus' style = {navStyle}>About Us</Link>
         </li>
         <li>
-          <Link to = '/shoppingcart' style = {navStyle}>My Cart ({props.numberOfItems})</Link>
+          <Link to = '/shopping-cart/shoppingcart' style = {navStyle}>My Cart ({props.numberOfItems})</Link>
         </li>
       </div>
     </nav>

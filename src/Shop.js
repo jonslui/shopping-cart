@@ -41,7 +41,7 @@ const Shop = (props) => {
       <div className = 'shop-items'>
         {items.map((item) => { return (
             <div className = 'shop-item' key = {item.id}>
-              <Link to = {`/shop/${item.id}`} style = {shopStyle}>
+              <Link to = {`/shopping-cart/shop/${item.id}`} style = {shopStyle}>
                 <div className = 'shop-item-image-container'>
                   <img src = {item.image} alt = {item.id} className = 'shop-item-image'/>                
                 </div>

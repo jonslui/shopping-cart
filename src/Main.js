@@ -1,5 +1,6 @@
 import React from 'react';
 import NavBar from './NavBar';
+import {Link} from 'react-router-dom';
 import './stylesheets/App.css'
 
 const Main = (props) => {  
@@ -13,7 +14,7 @@ const Main = (props) => {
           The best place to purchase all your fake goods!
         </p>
         <p>
-          Press Shop to begin!
+          Press {<Link to = '/shopping-cart/shop/'>Shop</Link>} to begin!
         </p>
       </div>
     </div>
