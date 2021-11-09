@@ -14,3 +14,5 @@ The best place to complete all your imaginary shopping needs! Browse items in th
 3. Add it to your cart
 4. View your cart and purchase your desired items!
 5. Enjoy!
+
+https://user-images.githubusercontent.com/34390833/140994603-f96ba4bb-a472-4127-8514-c3e2c190fe25.mov
